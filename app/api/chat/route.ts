@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
-
-import { ChatOpenAI } from "langchain/chat_models/openai";
 import { BytesOutputParser } from "langchain/schema/output_parser";
 import { PromptTemplate } from "langchain/prompts";
+import { ChatOllama } from "langchain/chat_models/ollama";
 
 export const runtime = "edge";
 
@@ -41,8 +40,9 @@ export async function POST(req: NextRequest) {
      * See a full list of supported models at:
      * https://js.langchain.com/docs/modules/model_io/models/
      */
-    const model = new ChatOpenAI({
-      temperature: 0.8,
+    const model = new ChatOllama({
+      baseUrl: "http://localhost:11434", // Default value
+      model: "llama2",
     });
     /**
      * Chat models stream message chunks rather than bytes, so this
