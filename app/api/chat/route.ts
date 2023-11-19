@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
      */
     const model = new ChatOllama({
       baseUrl: "http://localhost:11434", // Default value
-      model: "llama2",
+      model: "llama2:70b",
     });
     /**
      * Chat models stream message chunks rather than bytes, so this
